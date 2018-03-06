@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Turmite model">
+      <UniqueIdentifier>{bac6ed5f-4a81-4dd1-a433-5584ddc6957b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Turmite model">
+      <UniqueIdentifier>{5d4e7d24-e065-43f4-98ea-0f801ef962eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Application &amp; MVC">
+      <UniqueIdentifier>{91d9d794-8d48-4dc9-8933-57d09fed400b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application &amp; MVC">
+      <UniqueIdentifier>{c453a51c-a853-40ca-b450-01e7d0c015b4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="turmite_simulator.cpp">
+      <Filter>Source Files\Turmite model</Filter>
+    </ClCompile>
+    <ClCompile Include="grid.cpp">
+      <Filter>Source Files\Turmite model</Filter>
+    </ClCompile>
+    <ClCompile Include="orientation.cpp">
+      <Filter>Source Files\Turmite model</Filter>
+    </ClCompile>
+    <ClCompile Include="state_transition_table.cpp">
+      <Filter>Source Files\Turmite model</Filter>
+    </ClCompile>
+    <ClCompile Include="turmite.cpp">
+      <Filter>Source Files\Turmite model</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="application.cpp">
+      <Filter>Source Files\Application &amp; MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="sdl2_utils.cpp">
+      <Filter>Source Files\Application &amp; MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="turmite_simulator_controller.cpp">
+      <Filter>Source Files\Application &amp; MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="turmite_simulator_view.cpp">
+      <Filter>Source Files\Application &amp; MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="observer.cpp">
+      <Filter>Source Files\Application &amp; MVC</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="turmite_simulator.h">
+      <Filter>Header Files\Turmite model</Filter>
+    </ClInclude>
+    <ClInclude Include="cell_state.h">
+      <Filter>Header Files\Turmite model</Filter>
+    </ClInclude>
+    <ClInclude Include="grid.h">
+      <Filter>Header Files\Turmite model</Filter>
+    </ClInclude>
+    <ClInclude Include="orientation.h">
+      <Filter>Header Files\Turmite model</Filter>
+    </ClInclude>
+    <ClInclude Include="state_transition_table.h">
+      <Filter>Header Files\Turmite model</Filter>
+    </ClInclude>
+    <ClInclude Include="turmite.h">
+      <Filter>Header Files\Turmite model</Filter>
+    </ClInclude>
+    <ClInclude Include="application.h">
+      <Filter>Header Files\Application &amp; MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl2_utils.h">
+      <Filter>Header Files\Application &amp; MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="turmite_simulator_controller.h">
+      <Filter>Header Files\Application &amp; MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="turmite_simulator_view.h">
+      <Filter>Header Files\Application &amp; MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="observer.h">
+      <Filter>Header Files\Application &amp; MVC</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

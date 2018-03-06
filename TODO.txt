@@ -1,0 +1,7 @@
+TODO TURMITE SIM:
+
+- View als Observer von simulator, immer nur das zuletzt geänderte neu zeichnen!
+
+- Cell zu Klasse machen, jede Cell wird von einem Observer beobachtet und per notify der view bescheid gegeben
+
+- Rendering auf texture ausführen, dann den gezoomten bereich kopieren
