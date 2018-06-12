@@ -27,6 +27,10 @@ void Turmite::setPosition(grid::Position pos) noexcept {
 	position_ = pos;
 }
 
+const StateTransitionTable& Turmite::getStateTransitionTable() const noexcept {
+	return stateTransitionTable_;
+}
+
 
 
 }

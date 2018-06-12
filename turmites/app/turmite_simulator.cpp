@@ -11,6 +11,12 @@ void TurmiteSimulator::addTurmite(const turmite::Turmite& turmite) {
 	turmites_.push_back(turmite);
 }
 
+void TurmiteSimulator::centerTurmites() noexcept {
+	const std::size_t SIZE = grid_.size();
+	for (auto& turmite : turmites_)
+		turmite.setPosition({ SIZE / 2, SIZE / 2 });
+}
+
 const std::vector<turmite::Turmite>& TurmiteSimulator::getTurmites() const noexcept {
 	return turmites_;
 }

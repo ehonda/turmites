@@ -1,7 +1,39 @@
 TODO TURMITE SIM:
 
-- View als Observer von simulator, immer nur das zuletzt geänderte neu zeichnen!
+- namespaces aufräumen
 
+- versionsinfo zu gespeicherten turmites hinzufügen
+
+- Zunächst: Konsoleninput für Speicherpfad, dann kann Turmite speicher implementiert werden
+
+
+-- Observer Pattern durch boost::signals2 implementieren: 
+        https://www.boost.org/doc/libs/1_67_0/doc/html/signals2/tutorial.html
+        https://stackoverflow.com/questions/28416088/observer-pattern-via-boost-signal2
+
+    -> Partiell implementierte Observersachen wieder rausnehmen aus den Klassen
+    
+    (- View als Observer von simulator, immer nur das zuletzt geänderte neu zeichnen!)
+
+-- ZU VIEL DES GUTEN?
 - Cell zu Klasse machen, jede Cell wird von einem Observer beobachtet und per notify der view bescheid gegeben
 
-- Rendering auf texture ausführen, dann den gezoomten bereich kopieren
+
+-- Zeitsteuerung implementieren, dazu Kapitel in Design Patterns für Spieleprogrammierer durchlesen
+
+
+- To String Methode für Turmites
+
+
+- Input Handling in eigene Klasse auslagern
+
+
+-- Rendering auf texture ausführen, dann den gezoomten bereich kopieren
+
+
+## LANGFRISTIG: MENÜ
+
+- Idee: Qt für Menü
+    Links zu SDL2 & QT
+        https://www.reddit.com/r/gamedev/comments/2t653h/creating_a_basic_game_engine_with_qt_sdl2/
+        https://forums.libsdl.org/viewtopic.php?p=39271

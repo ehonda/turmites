@@ -16,6 +16,8 @@ public:
 	const grid::Position& getPosition() const noexcept;
 	void setPosition(grid::Position pos) noexcept;
 
+	const StateTransitionTable& getStateTransitionTable() const noexcept;
+
 private:
 	StateTransitionTable stateTransitionTable_;
 

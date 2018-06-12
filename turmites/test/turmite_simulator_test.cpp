@@ -17,7 +17,7 @@ class TurmiteSimulatorTest : public testing::Test {
 TEST_F(TurmiteSimulatorTest, step_twice_with_langtons_ant) {
 	TurmiteSimulator sim;
 	sim.setGridSize(3);
-	sim.addTurmite(Turmite(getLangtonsAntTransitionTable()));
+	sim.addTurmite(getLangtonsAntTransitionTable());
 
 	const auto& grid = sim.getGrid();
 	auto& turmite = sim.getTurmites()[0];
@@ -47,6 +47,24 @@ TEST_F(TurmiteSimulatorTest, step_twice_with_langtons_ant) {
 	const auto afterTwoSteps = Position(afterOneStep.x + 1, afterOneStep.y);
 	expectTurmitePositionOnGrid(grid, turmite, afterTwoSteps);
 
+}
+
+TEST_F(TurmiteSimulatorTest, center_turmites) {
+	TurmiteSimulator sim;
+	
+	const int SIZE = 11;
+	sim.setGridSize(SIZE);
+
+	sim.addTurmite(getLangtonsAntTransitionTable());
+	sim.addTurmite(getLangtonsAntTransitionTable());
+
+	sim.centerTurmites();
+
+	const auto& turmites = sim.getTurmites();
+	const Position EXPECTED_POSITION = { SIZE / 2, SIZE / 2 };
+	ASSERT_EQ(turmites.size(), 2);
+	EXPECT_EQ(turmites[0].getPosition(), EXPECTED_POSITION);
+	EXPECT_EQ(turmites[1].getPosition(), EXPECTED_POSITION);
 }
 
 }

@@ -31,6 +31,7 @@ public:
 	void setCellStateAt(const Position& pos, CellState state);
 
 	const std::vector<std::vector<CellState>>& getCells() const noexcept;
+	std::size_t size() const noexcept;
 
 private:
 	std::size_t size_;

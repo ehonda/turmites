@@ -36,6 +36,12 @@
     <ClCompile Include="turmite_test.cpp">
       <Filter>Source Files\Turmite model</Filter>
     </ClCompile>
+    <ClCompile Include="state_transition_table_test.cpp">
+      <Filter>Source Files\Turmite model</Filter>
+    </ClCompile>
+    <ClCompile Include="turmite_simulator_controller_test.cpp">
+      <Filter>Source Files\Turmite model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="testing_utils.h">

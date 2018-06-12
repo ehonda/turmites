@@ -47,6 +47,10 @@ const std::vector<std::vector<CellState>>& Grid::getCells() const noexcept {
 	return grid_;
 }
 
+std::size_t Grid::size() const noexcept{
+	return grid_.size();
+}
+
 Position::Position(std::size_t x, std::size_t y)
 	: x(x), y(y)
 {

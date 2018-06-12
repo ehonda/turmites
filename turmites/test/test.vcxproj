@@ -77,12 +77,12 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>..\app_static_libs;$(GTEST_LATEST_MD_LIB_32_DEBUG_DIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtestd.lib;%(AdditionalDependencies);..\app_static_libs\$(SolutionName)_$(ConfigurationName)_$(PlatformShortName).lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\app_static_libs;$(GTEST_LATEST_MD_LIB_32_DEBUG_DIR);$(SDL2_LATEST_LIB_32_DEBUG_DIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;gtestd.lib;%(AdditionalDependencies);..\app_static_libs\$(SolutionName)_$(ConfigurationName)_$(PlatformShortName).lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -92,12 +92,12 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>..\app_static_libs;$(GTEST_LATEST_MD_LIB_64_DEBUG_DIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtestd.lib;%(AdditionalDependencies);..\app_static_libs\$(SolutionName)_$(ConfigurationName)_$(PlatformShortName).lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\app_static_libs;$(GTEST_LATEST_MD_LIB_64_DEBUG_DIR);$(SDL2_LATEST_LIB_64_DEBUG_DIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;gtestd.lib;%(AdditionalDependencies);..\app_static_libs\$(SolutionName)_$(ConfigurationName)_$(PlatformShortName).lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,14 +109,14 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>..\app_static_libs;$(GTEST_LATEST_MD_LIB_32_RELEASE_DIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtest.lib;%(AdditionalDependencies);..\app_static_libs\$(SolutionName)_$(ConfigurationName)_$(PlatformShortName).lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\app_static_libs;$(GTEST_LATEST_MD_LIB_32_RELEASE_DIR);$(SDL2_LATEST_LIB_32_RELEASE_DIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;gtest.lib;%(AdditionalDependencies);..\app_static_libs\$(SolutionName)_$(ConfigurationName)_$(PlatformShortName).lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -128,21 +128,23 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>..\app_static_libs;$(GTEST_LATEST_MD_LIB_64_RELEASE_DIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtest.lib;%(AdditionalDependencies);..\app_static_libs\$(SolutionName)_$(ConfigurationName)_$(PlatformShortName).lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\app_static_libs;$(GTEST_LATEST_MD_LIB_64_RELEASE_DIR);$(SDL2_LATEST_LIB_64_RELEASE_DIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;gtest.lib;%(AdditionalDependencies);..\app_static_libs\$(SolutionName)_$(ConfigurationName)_$(PlatformShortName).lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="grid_test.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="orientation_test.cpp" />
+    <ClCompile Include="state_transition_table_test.cpp" />
     <ClCompile Include="testing_utils.cpp" />
+    <ClCompile Include="turmite_simulator_controller_test.cpp" />
     <ClCompile Include="turmite_simulator_test.cpp" />
     <ClCompile Include="turmite_test.cpp" />
   </ItemGroup>

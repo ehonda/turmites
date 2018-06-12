@@ -53,7 +53,7 @@ void Application::initializeController() {
 	sim.setGridSize(N);
 
 	//turmite::Turmite turmite(turmite::getLangtonsAntTransitionTable());
-	turmite::Turmite turmite(turmite::getRandomClassicalTransitionTable(5));
+	turmite::Turmite turmite(turmite::getRandomClassicalTransitionTable(3));
 	turmite.setPosition({ N / 2, N / 2 });
 	sim.addTurmite(turmite);
 
@@ -65,6 +65,8 @@ void Application::handleEvents() {
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT)
 			running_ = false;
+		else
+			controller_.handleEvent(e);
 	}
 }
 

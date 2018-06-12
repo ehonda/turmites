@@ -1,6 +1,8 @@
 #pragma once
 
 #include <memory>
+#include <string>
+#include <string_view>
 
 #include "SDL.h"
 
@@ -9,16 +11,30 @@
 
 namespace turmites_sim::mvc {
 
+const std::string SAVE_DIRECTORY_NAME = "turmites_savefiles";
+
 class TurmiteSimulatorController {
 public:
 	void handleEvent(const SDL_Event& e);
 	void update();
 
+	const std::shared_ptr<TurmiteSimulator>& getSimulator() const noexcept;
+
 	void setWindow(const std::shared_ptr<SDL_Window>& window);
 	void setRenderer(const std::shared_ptr<SDL_Renderer>& renderer);
 	void setSimulator(const TurmiteSimulator& simulator);
 
+	void loadTurmite(std::string_view name);
+	void saveTurmite(std::string_view name) const;
+
 private:
+	std::string promptFileName() const;
+
+	void handleLoadRequest();
+	void handleSaveRequest() const;
+	void handleRandomTurmiteRequest();
+	void handleNewTurmiteRequest();
+
 	std::shared_ptr<SDL_Window> window_;
 
 	std::shared_ptr<TurmiteSimulator> simulator_;

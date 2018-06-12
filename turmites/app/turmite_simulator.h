@@ -12,6 +12,7 @@ public:
 	void stepTurmites();
 
 	void addTurmite(const turmite::Turmite& turmite);
+	void centerTurmites() noexcept;
 	const std::vector<turmite::Turmite>& getTurmites() const noexcept;
 	std::vector<turmite::Turmite>& getTurmites() noexcept;
 
