@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cereal>
+	<table>
+		<transition_table size="dynamic">
+			<value0 size="dynamic">
+				<value0>
+					<write_color>2</write_color>
+					<turn>2</turn>
+					<next_state>0</next_state>
+				</value0>
+				<value1>
+					<write_color>0</write_color>
+					<turn>3</turn>
+					<next_state>0</next_state>
+				</value1>
+				<value2>
+					<write_color>1</write_color>
+					<turn>2</turn>
+					<next_state>0</next_state>
+				</value2>
+			</value0>
+		</transition_table>
+	</table>
+</cereal>
+

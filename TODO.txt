@@ -1,8 +1,24 @@
 TODO TURMITE SIM:
 
+- framecount_ overflow auf lange sicht -> problem?
+
+- framerate durch speedcontroller kontrollieren, granularität
+    beim übergang von rendercap zu delay beachten
+    
+- speedcontroller ist guter kandidat für tests mit gemockter render funktion
+
+- colormap parser für über konsolo angegebene colormap files implementieren
+    
+- view refactoren, signal mechanismus vernünftig machen
+
+- konsolen interface vereinheitlichen
+    -> dazu klasse für logging ausgaben, die bei -logging_on auf die konsole ausgibt
+
 - namespaces aufräumen
 
 - versionsinfo zu gespeicherten turmites hinzufügen
+
+- zum zeichnen: in textur zeichnen, scaling factor für kopieren auf bildschirm benutzen (ZOOM)
 
 - Zunächst: Konsoleninput für Speicherpfad, dann kann Turmite speicher implementiert werden
 

@@ -18,6 +18,8 @@ public:
 
 	void setGridSize(std::size_t n);
 	const grid::Grid& getGrid() const noexcept;
+	// BETTER: SUBSCRIBE DIRECTLY VIA SIMULATOR
+	grid::Grid& getGrid() noexcept;
 
 private:
 	grid::Grid grid_;

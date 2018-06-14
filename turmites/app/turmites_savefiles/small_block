@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cereal>
+	<table>
+		<transition_table size="dynamic">
+			<value0 size="dynamic">
+				<value0>
+					<write_color>1</write_color>
+					<turn>2</turn>
+					<next_state>0</next_state>
+				</value0>
+				<value1>
+					<write_color>3</write_color>
+					<turn>1</turn>
+					<next_state>0</next_state>
+				</value1>
+				<value2>
+					<write_color>1</write_color>
+					<turn>2</turn>
+					<next_state>0</next_state>
+				</value2>
+				<value3>
+					<write_color>3</write_color>
+					<turn>1</turn>
+					<next_state>0</next_state>
+				</value3>
+				<value4>
+					<write_color>4</write_color>
+					<turn>2</turn>
+					<next_state>1</next_state>
+				</value4>
+			</value0>
+			<value1 size="dynamic">
+				<value0>
+					<write_color>4</write_color>
+					<turn>2</turn>
+					<next_state>1</next_state>
+				</value0>
+				<value1>
+					<write_color>4</write_color>
+					<turn>1</turn>
+					<next_state>0</next_state>
+				</value1>
+				<value2>
+					<write_color>4</write_color>
+					<turn>3</turn>
+					<next_state>0</next_state>
+				</value2>
+				<value3>
+					<write_color>0</write_color>
+					<turn>3</turn>
+					<next_state>1</next_state>
+				</value3>
+				<value4>
+					<write_color>4</write_color>
+					<turn>0</turn>
+					<next_state>0</next_state>
+				</value4>
+			</value1>
+		</transition_table>
+	</table>
+</cereal>
+

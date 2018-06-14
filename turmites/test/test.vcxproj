@@ -77,7 +77,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);$(BOOST_LATEST_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -92,7 +93,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);$(BOOST_LATEST_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -109,7 +111,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);$(BOOST_LATEST_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -128,7 +131,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(GTEST_LATEST_MD_INCLUDE_DIR);$(SDL2_LATEST_INCLUDE_DIR);$(BOOST_LATEST_DIR);..\app\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

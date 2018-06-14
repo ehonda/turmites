@@ -82,7 +82,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SDL2_LATEST_INCLUDE_DIR);$(CEREAL_LATEST_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SDL2_LATEST_INCLUDE_DIR);$(CEREAL_LATEST_INCLUDE_DIR);$(BOOST_LATEST_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -100,7 +101,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SDL2_LATEST_INCLUDE_DIR);$(CEREAL_LATEST_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SDL2_LATEST_INCLUDE_DIR);$(CEREAL_LATEST_INCLUDE_DIR);$(BOOST_LATEST_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,7 +122,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SDL2_LATEST_INCLUDE_DIR);$(CEREAL_LATEST_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SDL2_LATEST_INCLUDE_DIR);$(CEREAL_LATEST_INCLUDE_DIR);$(BOOST_LATEST_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -142,7 +145,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SDL2_LATEST_INCLUDE_DIR);$(CEREAL_LATEST_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SDL2_LATEST_INCLUDE_DIR);$(CEREAL_LATEST_INCLUDE_DIR);$(BOOST_LATEST_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -157,6 +161,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
+    <ClCompile Include="speed_controller.cpp" />
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="observer.cpp" />
@@ -170,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
+    <ClInclude Include="speed_controller.h" />
     <ClInclude Include="cell_state.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="observer.h" />

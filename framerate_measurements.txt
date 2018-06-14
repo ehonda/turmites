@@ -1,0 +1,86 @@
+FRAMERATE MEASUREMENTS
+
+Gridsize =      100 x 100
+Screensize =    1024 x 768
+
+1) No Delay, No Rendering
+    - Render All:           ~200 FPS
+    - Render Signal:        ~10e6 FPS
+    
+2) Delay, No Rendering
+    - Render All:           ~175 FPS
+    - Render Signal:        ~500 FPS
+    
+3) Delay, Rendering
+    - Render All:           ~60 FPS
+    - Render Signal:        ~60 FPS
+
+4) No Delay, Rendering
+    - Render All:           ~60 FPS
+    - Render Signal:        ~60 FPS
+
+-----------------------------------------
+    
+5) No Delay, Rendering, Render every 100th frame
+    - Render Signal:        ~6000 FPS
+    
+6) Delay, Rendering, Render every 100th frame
+    - Render Signal:        ~500 FPS
+    
+7) Delay, Rendering, Render every 100th frame
+    - Render Signal:        ~6000 FPS
+    
+-----------------------------------------
+
+BASELINE (NO RENDERING, NO DELAY, UPDATES INCLUDED)
+
+1) Compute frame:
+                            ~1'000'000 FPS
+
+                            
+DELAY MEASUREMENTS (NO RENDERING, UPDATES INCLUDED)
+
+1) Delay every frame:
+                            ~500 FPS
+                            
+2) Delay every 100th frame:
+                            ~50'000 FPS
+                            
+=> Delay every nth frame:
+                            ~500n FPS
+                            
+
+RENDERING MEASUREMENTS (NO DELAY, UPDATES INCLUDED)
+
+1) Render every frame:
+                            ~60 FPS
+                            
+2) Render every 100th frame:
+                            ~6000 FPS
+                            
+3) Render every 1000th frame:
+                            ~60'000 FPS
+                            
+=> Render every nth frame:
+                            ~60n FPS
+                            
+                            
+                            
+CONCLUSIONS
+
+- Rendering caps framerate more than delay (factor of 10)
+    and both cap the framerate linearily
+    
+- Delay is probably not needed (only for slower speeds)
+    
+- Bottom line is 1'000'000 FPS without rendering or delay,
+    might be optimized but is fine at the moment
+    
+    
+- !The flag SDL_RENDERER_PRESENTVSYNC on initializing the
+    renderer limits the frame rate to the screens refresh 
+    rate, which is not what we want here. See:
+    https://stackoverflow.com/questions/21949479/is-there-a-frame-rate-cap-built-into-sdl-2-0?rq=1
+    
+- Implement speeding up by rendering fewer frames and speeding
+    down by waiting between rendering (each) frame

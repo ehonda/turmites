@@ -8,6 +8,17 @@ Grid::Grid(std::size_t size)
 	: size_(size), grid_(size, std::vector<CellState>(size, CELL_ZERO)) {
 }
 
+Grid::Grid(const Grid& other)
+	: size_(other.size_), grid_(other.grid_)
+{
+}
+
+Grid& Grid::operator=(const Grid& other) {
+	size_ = other.size_;
+	grid_ = other.grid_;
+	return *this;
+}
+
 Position Grid::getNextPositionInOrientationFrom(const Position& pos,
 	orientation::Orientation orientation) 
 {
@@ -41,6 +52,7 @@ void Grid::setCellStateAt(const Position& pos, CellState state) {
 		throw std::invalid_argument("The requested Position " + toString(pos) + " is out of bounds");
 
 	grid_[pos.y][pos.x] = state;
+	cellUpdateSignal_(pos, state);
 }
 
 const std::vector<std::vector<CellState>>& Grid::getCells() const noexcept {
@@ -49,6 +61,12 @@ const std::vector<std::vector<CellState>>& Grid::getCells() const noexcept {
 
 std::size_t Grid::size() const noexcept{
 	return grid_.size();
+}
+
+boost::signals2::connection Grid::subscribeToCellUpdates(
+	CellUpdateHandler::slot_type handler)
+{
+	return cellUpdateSignal_.connect(handler);
 }
 
 Position::Position(std::size_t x, std::size_t y)

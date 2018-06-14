@@ -9,8 +9,17 @@ void Application::run() {
 	while (running_) {
 		handleEvents();
 		update();
-		render();
-		SDL_Delay(1);
+
+		////if (frames_ % 1000 == 0) {
+		////	render();
+		////	//SDL_Delay(1);
+		////}
+		//////render();
+		//render();
+
+		rendererController_.render(frames_);
+		
+		frames_++;
 	}
 	cleanup();
 }
@@ -19,6 +28,8 @@ void Application::initialize() {
 	initializeSDL();
 	initializeController();
 	running_ = true;
+	startingTime_ = std::chrono::steady_clock::now();
+	rendererController_.setRenderer(renderer_);
 }
 
 void Application::initializeSDL() {
@@ -35,8 +46,12 @@ void Application::initializeSDL() {
 		return;
 	}
 
+	// The flag SDL_RENDERER_PRESENTVSYNC limits the frame rate to the screens refresh rate,
+	// which is not what we want here. See:
+	//
+	// https://stackoverflow.com/questions/21949479/is-there-a-frame-rate-cap-built-into-sdl-2-0?rq=1
 	renderer_ = std::shared_ptr<SDL_Renderer>(
-		SDL_CreateRenderer(window_.get(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC),
+		SDL_CreateRenderer(window_.get(), -1, SDL_RENDERER_ACCELERATED /*| SDL_RENDERER_PRESENTVSYNC*/),
 		sdl2_utils::getRendererDeleter());
 	if (!renderer_) {
 		sdl2_utils::logError("SDL_CreateRenderer");
@@ -63,10 +78,22 @@ void Application::initializeController() {
 void Application::handleEvents() {
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
-		if (e.type == SDL_QUIT)
+		/*if (e.type == SDL_QUIT)
 			running_ = false;
 		else
+			controller_.handleEvent(e);*/
+		switch (e.type) {
+		case SDL_QUIT:
+			running_ = false;
+			break;
+
+		case SDL_KEYDOWN:
 			controller_.handleEvent(e);
+			rendererController_.handleEvent(e);
+			if (e.key.keysym.sym == SDLK_f)
+				handleFPSRequest();
+			break;
+		}
 	}
 }
 
@@ -81,6 +108,17 @@ void Application::render() {
 void Application::cleanup() {
 	window_.reset();
 	renderer_.reset();
+}
+
+void Application::handleFPSRequest() {
+	using namespace std::chrono;
+	const auto timeSinceStart = steady_clock::now() - startingTime_;
+
+	const auto secondsSinceStart = duration_cast<seconds>(timeSinceStart);
+	
+	std::cout << "Avg. FPS = "
+		<< (static_cast<double>(frames_) / secondsSinceStart.count())
+		<< std::endl;
 }
 
 }

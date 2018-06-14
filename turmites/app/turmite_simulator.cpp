@@ -33,4 +33,8 @@ const grid::Grid& TurmiteSimulator::getGrid() const noexcept {
 	return grid_;
 }
 
+grid::Grid& TurmiteSimulator::getGrid() noexcept {
+	return grid_;
+}
+
 }

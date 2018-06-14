@@ -1,5 +1,6 @@
 #include <limits>
 
+#include "boost/signals2/signal.hpp"
 #include "gtest/gtest.h"
 
 #include "grid.h"
@@ -45,6 +46,29 @@ TEST_F(GridTest, get_next_position_throws_for_invalid_orientation) {
 	const Orientation invalidOrientation = static_cast<Orientation>(5555);
 	EXPECT_THROW(grid_.getNextPositionInOrientationFrom({ 0, 0 }, invalidOrientation),
 		std::invalid_argument);
+}
+
+TEST_F(GridTest, grid_signals_on_cell_state_change) {
+	// Set to 0 initially
+	const Position position = { 0, 0 };
+	grid_.setCellStateAt(position, 0);
+
+	// Subscribe to updates
+	Position updatePosition = { 2, 2 };
+	CellState updatedCellState = 0;
+	grid_.subscribeToCellUpdates(
+		[&updatePosition, &updatedCellState]
+		(Position pos, CellState cell) {
+			updatePosition = pos;
+			updatedCellState = cell;
+	});
+
+	// Update and check return values
+	const CellState newCellState = 1;
+	grid_.setCellStateAt(position, newCellState);
+
+	EXPECT_EQ(position, updatePosition);
+	EXPECT_EQ(newCellState, updatedCellState);
 }
 
 }

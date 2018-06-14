@@ -33,7 +33,6 @@ void TurmiteSimulatorController::handleEvent(const SDL_Event& e) {
 
 void TurmiteSimulatorController::update() {
 	simulator_->stepTurmites();
-	view_.render();
 }
 
 const std::shared_ptr<TurmiteSimulator>& 
@@ -174,8 +173,8 @@ void TurmiteSimulatorController::handleRandomTurmiteRequest() {
 }
 
 void TurmiteSimulatorController::handleNewTurmiteRequest() {
-	int internalStates = 0;
-	int cellStates = 0;
+	int internalStates = 1;
+	int cellStates = 2;
 	int gridSize = 100;
 
 	std::cout << "Enter number of internal states:" << std::endl;
@@ -184,8 +183,8 @@ void TurmiteSimulatorController::handleNewTurmiteRequest() {
 	std::cout << "Enter number of cell states:" << std::endl;
 	std::cin >> cellStates;
 
-	/*std::cout << "Enter grid size:" << std::endl;
-	std::cin >> gridSize;*/
+	std::cout << "Enter grid size:" << std::endl;
+	std::cin >> gridSize;
 
 	// Make new simulator
 	TurmiteSimulator newSimulator;
