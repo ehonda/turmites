@@ -17,7 +17,7 @@ void Application::run() {
 		//////render();
 		//render();
 
-		rendererController_.render(frames_);
+		speedController_.render(frames_);
 		
 		frames_++;
 	}
@@ -29,7 +29,7 @@ void Application::initialize() {
 	initializeController();
 	running_ = true;
 	startingTime_ = std::chrono::steady_clock::now();
-	rendererController_.setRenderer(renderer_);
+	speedController_.setRenderer(renderer_);
 }
 
 void Application::initializeSDL() {
@@ -89,7 +89,7 @@ void Application::handleEvents() {
 
 		case SDL_KEYDOWN:
 			controller_.handleEvent(e);
-			rendererController_.handleEvent(e);
+			speedController_.handleEvent(e);
 			if (e.key.keysym.sym == SDLK_f)
 				handleFPSRequest();
 			break;

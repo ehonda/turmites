@@ -7,6 +7,9 @@
 namespace turmites_sim::mvc {
 
 void TurmiteSimulatorController::handleEvent(const SDL_Event& e) {
+	// Better: let the controller handle the event and set colormap
+	// for the view from controller
+	view_.handleEvent(e);
 	switch (e.type) 
 	{
 	case SDL_KEYDOWN:
@@ -63,7 +66,7 @@ void TurmiteSimulatorController::loadTurmite(std::string_view name) {
 	if (!fs::exists(SAVE_DIRECTORY / name)) {
 		std::cout << "Loading turmite failed. File"
 			<< (SAVE_DIRECTORY / name)
-			<<"does not exist."
+			<< " does not exist."
 			<< std::endl;
 		return;
 	}

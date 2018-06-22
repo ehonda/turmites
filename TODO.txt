@@ -1,5 +1,7 @@
 TODO TURMITE SIM:
 
+- schließen von files in den entsprechenden methoden überprüfen
+
 - framecount_ overflow auf lange sicht -> problem?
 
 - framerate durch speedcontroller kontrollieren, granularität
@@ -19,6 +21,9 @@ TODO TURMITE SIM:
 - versionsinfo zu gespeicherten turmites hinzufügen
 
 - zum zeichnen: in textur zeichnen, scaling factor für kopieren auf bildschirm benutzen (ZOOM)
+    -> dabei möglichkeit, die kamera auf die ameise zu fokussieren und dieser zu folgen
+    -> überlegen wie der übergang über die weltecken am besten mit der fokusskamera realisiert werden kann
+    -> zunächst: vllt einfach ausserhalb des spiels schwarz rendern, schauen wie das beim übergang aussieht
 
 - Zunächst: Konsoleninput für Speicherpfad, dann kann Turmite speicher implementiert werden
 
@@ -53,3 +58,13 @@ TODO TURMITE SIM:
     Links zu SDL2 & QT
         https://www.reddit.com/r/gamedev/comments/2t653h/creating_a_basic_game_engine_with_qt_sdl2/
         https://forums.libsdl.org/viewtopic.php?p=39271
+        
+        
+        
+        
+        
+## GANZ LANGRISTIG: RENDERING AUF OBERFLÄCHE VON 3D OBJEKTEN
+
+- z.B. auf Kugel
+
+- vllt verschiedene zustände als höhen darstellen

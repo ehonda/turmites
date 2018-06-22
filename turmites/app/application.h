@@ -40,7 +40,7 @@ private:
 	long frames_ = 0;
 	std::chrono::time_point<std::chrono::steady_clock> startingTime_;
 
-	SpeedController rendererController_;
+	SpeedController speedController_;
 
 	bool running_ = false;
 };
