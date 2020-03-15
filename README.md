@@ -13,6 +13,8 @@ The simulation can be controlled by using the following keys:
 
 "n" - start new random turmite, specifying gridsize and number of internal/cell states
 
+"c" - load a color scheme file
+
 "f" - show fps
 
 "+" - make simulation go faster
