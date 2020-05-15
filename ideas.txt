@@ -1,0 +1,21 @@
+- Multiple ants on field
+- Mutate ants
+
+- Drawing:
+    -> Make grid size independent of screen size
+    -> Redraw on resize etc
+    -> Zoom feature
+    
+- User interaction
+    -> change grid size without entering new ant
+    -> mutate ant
+    -> cli command to place new ant, show list of active ants, edit active ants etc
+    
+- Implementation
+    -> Implement observer/subscriber mechanisms as abstract base classes, using signals2
+    -> Make CLI class to systemize the cli commands interaction
+    
+    
+- User stories:
+    -> place several (slightly different) ants, maybe mutated versions of a ruleset, 
+        on the same grid and see them interact
