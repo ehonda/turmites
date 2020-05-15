@@ -29,22 +29,24 @@ public:
 
 	// CONST ARGUMENTS?
 	void render(grid::Position pos, grid::CellState cell);
+	void renderAll();
 
 	void setRenderer(const std::shared_ptr<SDL_Renderer>& renderer);
 	void setTurmiteSimulator(const std::shared_ptr<TurmiteSimulator>& sim);
 
 private:
-	void renderInitialGrid();
 	void renderCellAt(const grid::Position& pos, grid::CellState cell);
 
 	// REFACTOR INTO INPUTHANDLER CLASS OR COLLECTION OF UTILITY FUNCTIONS
 	std::string promptFileName() const;
 	void handleLoadColormapRequest();
+	void handleZoomRequest();
 
 	std::shared_ptr<SDL_Renderer> renderer_;
 	CellStateToColorMap colorMap_;
 	std::shared_ptr<TurmiteSimulator> simulator_;
 	std::shared_ptr<SDL_Texture> gridTexture_;	// TODO: Should this be unique_ptr?
+	SDL_Rect viewport_;
 	boost::signals2::connection gridConnection_;
 };
 

@@ -25,15 +25,35 @@ void TurmiteSimulatorView::handleEvent(const SDL_Event& e) {
 		case SDLK_c:
 			handleLoadColormapRequest();
 			break;
+
+		case SDLK_z:
+			handleZoomRequest();
+			break;
 		}
 	}
 }
 
 void TurmiteSimulatorView::render(grid::Position pos, grid::CellState cell) {
-	renderCellAt(pos, cell);
-	// TODO: Doing this every time seems really inefficient
 	SDL_SetRenderTarget(renderer_.get(), nullptr);
-	SDL_RenderCopy(renderer_.get(), gridTexture_.get(), nullptr, nullptr);
+	SDL_SetRenderDrawColor(renderer_.get(), 0xFF, 0xFF, 0xFF, SDL_ALPHA_OPAQUE);
+	SDL_RenderClear(renderer_.get());
+	renderCellAt(pos, cell);
+	// TODO: Doing this every time seems really inefficient | It's probably fine?
+	//	-> Maybe it's alright to just render the whole grid every time
+	SDL_RenderCopy(renderer_.get(), gridTexture_.get(), &viewport_, nullptr);
+}
+
+void TurmiteSimulatorView::renderAll()
+{
+	const auto& grid = simulator_->getGrid();
+	const auto size = grid.size();
+
+	for (std::size_t x = 0; x < size; ++x) {
+		for (std::size_t y = 0; y < size; ++y) {
+			const grid::Position pos = { x, y };
+			renderCellAt(pos, grid.getCellStateAt(pos));
+		}
+	}
 }
 
 void TurmiteSimulatorView::setRenderer(const std::shared_ptr<SDL_Renderer>& renderer) {
@@ -57,28 +77,18 @@ void TurmiteSimulatorView::setTurmiteSimulator(
 		// https://stackoverflow.com/questions/12506979/what-is-the-point-of-an-sdl2-texture
 		// https://discourse.libsdl.org/t/texture-streaming-vs-target/20376
 		// Entry points to discussions about TEXTUREACESS_STREAMING vs _TARGET
+		const auto size = static_cast<int>(grid.size());
 		gridTexture_ = std::shared_ptr<SDL_Texture>(
 			SDL_CreateTexture(
 				renderer_.get(),
 				SDL_PIXELFORMAT_RGBA8888,
 				SDL_TEXTUREACCESS_TARGET,
-				grid.size(),
-				grid.size()
+				size,
+				size
 			),
 			&SDL_DestroyTexture);
-		renderInitialGrid();
-	}
-}
-
-void TurmiteSimulatorView::renderInitialGrid() {
-	const auto& grid = simulator_->getGrid();
-	const auto size = grid.size();
-
-	for (std::size_t x = 0; x < size; ++x) {
-		for (std::size_t y = 0; y < size; ++y) {
-			const grid::Position pos = { x, y };
-			renderCellAt(pos, grid.getCellStateAt(pos));
-		}
+		viewport_ = { 0, 0, size, size };
+		renderAll();
 	}
 }
 
@@ -105,7 +115,34 @@ void TurmiteSimulatorView::handleLoadColormapRequest() {
 	const auto FILENAME = promptFileName();
 	colorMap_ = readColorMapFile(FILENAME);
 	// Better name: renderFullGrid()
-	renderInitialGrid();
+	renderAll();
+}
+
+void TurmiteSimulatorView::handleZoomRequest() {
+	const auto size = static_cast<int>(simulator_->getGrid().size());
+	int x = 0;
+	int y = 0;
+	int w = size;
+	int h = size;
+
+	std::cout << "Enter new viewport data:\n";
+	std::cout << "x = ";
+	std::cin >> x;
+
+	std::cout << "y = ";
+	std::cin >> y;
+
+	std::cout << "w = ";
+	std::cin >> w;
+
+	std::cout << "h = ";
+	std::cin >> h;
+
+	x = std::clamp(x, 0, size);
+	y = std::clamp(y, 0, size);
+	w = std::clamp(w, 0, size - x);
+	h = std::clamp(h, 0, size - y);
+	viewport_ = { x, y, w, h };
 }
 
 CellStateToColorMap getDefaultColorMap() {

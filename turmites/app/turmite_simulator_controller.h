@@ -17,6 +17,7 @@ class TurmiteSimulatorController {
 public:
 	void handleEvent(const SDL_Event& e);
 	void update();
+	void renderAll();
 
 	const std::shared_ptr<TurmiteSimulator>& getSimulator() const noexcept;
 
@@ -34,6 +35,7 @@ private:
 	void handleSaveRequest() const;
 	void handleRandomTurmiteRequest();
 	void handleNewTurmiteRequest();
+	void handleInfoRequest();
 
 	std::shared_ptr<SDL_Window> window_;
 

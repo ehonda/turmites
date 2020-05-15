@@ -30,12 +30,20 @@ void TurmiteSimulatorController::handleEvent(const SDL_Event& e) {
 		case SDLK_n:
 			handleNewTurmiteRequest();
 			break;
+
+		case SDLK_i:
+			handleInfoRequest();
+			break;
 		}
 	}
 }
 
 void TurmiteSimulatorController::update() {
 	simulator_->stepTurmites();
+}
+
+void TurmiteSimulatorController::renderAll() {
+	view_.renderAll();
 }
 
 const std::shared_ptr<TurmiteSimulator>& 
@@ -195,6 +203,11 @@ void TurmiteSimulatorController::handleNewTurmiteRequest() {
 	newSimulator.addTurmite(turmite::getRandomTransitionTable(internalStates, cellStates));
 	newSimulator.centerTurmites();
 	setSimulator(newSimulator);
+}
+
+void TurmiteSimulatorController::handleInfoRequest() {
+	std::cout << "Grid information:\n"
+		<< "size = " << simulator_->getGrid().size() << "\n";
 }
 
 }

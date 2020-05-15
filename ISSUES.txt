@@ -1,8 +1,24 @@
 - The whole mvc situation is kind of a mess, and should be fixed
-    - The grid texture should come frome outside, so we don't
+    
+    -   The grid texture should come frome outside, so we don't
         have to acces view from speedcontroller (to only copy
         from the texture when we really want to draw everything)
         -> this also enables copying on resize
         
-- speedcontroller should be reworked (initializiation etc)
+    -   mvc is for making user interfaces, so it's probably not
+        appropriate here
+
         
+- speedcontroller should be reworked (initializiation etc)
+
+
+- rework poc zoom
+
+
+- rework interaaction with console:
+
+    - should be handled by a seperate class
+    - non-blocking?
+    - handle getting sizes in a uniform way
+
+- unify input handling, hotkeys

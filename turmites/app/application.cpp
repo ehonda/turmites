@@ -91,6 +91,11 @@ void Application::handleEvents() {
 				if (e.key.keysym.sym == SDLK_ESCAPE)
 					running_ = false;
 				break;
+
+			case SDL_WINDOWEVENT:
+				if (e.window.event == SDL_WINDOWEVENT_RESIZED)
+					controller_.renderAll();
+			break;
 		}
 	}
 }
