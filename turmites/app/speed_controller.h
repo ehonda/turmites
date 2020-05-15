@@ -6,7 +6,7 @@
 
 namespace turmites_sim::app {
 
-// Initialize/construct class in a safer way
+// TODO: Rework, better initialization, think about responsibilities!
 //
 // This class is responsible for controlling rendering step and speed
 //		-> well designed?
@@ -14,7 +14,7 @@ namespace turmites_sim::app {
 class SpeedController {
 public:
 	void setRenderer(const std::shared_ptr<SDL_Renderer> renderer);
-
+	
 	void render(long framecount);
 
 	void handleEvent(SDL_Event& e);

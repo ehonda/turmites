@@ -12,8 +12,10 @@ void SpeedController::setRenderer(
 }
 
 void SpeedController::render(long framecount) {
-	if(framecount % renderStep_ == 0)
+	if (framecount % renderStep_ == 0) {
+		
 		SDL_RenderPresent(renderer_.get());
+	}
 
 	if (mode_ == Mode::DELAY)
 		SDL_Delay(delay_);

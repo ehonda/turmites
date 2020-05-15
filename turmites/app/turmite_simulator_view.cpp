@@ -31,7 +31,9 @@ void TurmiteSimulatorView::handleEvent(const SDL_Event& e) {
 
 void TurmiteSimulatorView::render(grid::Position pos, grid::CellState cell) {
 	renderCellAt(pos, cell);
-	//renderInitialGrid();
+	// TODO: Doing this every time seems really inefficient
+	SDL_SetRenderTarget(renderer_.get(), nullptr);
+	SDL_RenderCopy(renderer_.get(), gridTexture_.get(), nullptr, nullptr);
 }
 
 void TurmiteSimulatorView::setRenderer(const std::shared_ptr<SDL_Renderer>& renderer) {
@@ -44,11 +46,26 @@ void TurmiteSimulatorView::setTurmiteSimulator(
 	simulator_ = sim;
 	// TODO: HOW TO HANDLE EMPTY SIMULATORS
 	if (simulator_) {
+		auto& grid = simulator_->getGrid();
+
 		gridConnection_.disconnect();
-		gridConnection_ = simulator_->getGrid().subscribeToCellUpdates(
+		gridConnection_ = grid.subscribeToCellUpdates(
 			[this](grid::Position pos, grid::CellState cell) {
 				this->render(pos, cell);
 		});
+
+		// https://stackoverflow.com/questions/12506979/what-is-the-point-of-an-sdl2-texture
+		// https://discourse.libsdl.org/t/texture-streaming-vs-target/20376
+		// Entry points to discussions about TEXTUREACESS_STREAMING vs _TARGET
+		gridTexture_ = std::shared_ptr<SDL_Texture>(
+			SDL_CreateTexture(
+				renderer_.get(),
+				SDL_PIXELFORMAT_RGBA8888,
+				SDL_TEXTUREACCESS_TARGET,
+				grid.size(),
+				grid.size()
+			),
+			&SDL_DestroyTexture);
 		renderInitialGrid();
 	}
 }
@@ -68,21 +85,12 @@ void TurmiteSimulatorView::renderInitialGrid() {
 void TurmiteSimulatorView::renderCellAt(
 	const grid::Position& pos, grid::CellState cell) 
 {
-	int width, height;
-	SDL_GetRendererOutputSize(renderer_.get(), &width, &height);
-
-	const auto size = simulator_->getGrid().size();
-	int rect_width = width / size;
-	int rect_height = height / size;
-
-	// Draw
 	const auto& color = colorMap_.at(cell);
 	SDL_SetRenderDrawColor(renderer_.get(), color.r, color.g, color.b, color.a);
-
-	int screen_x = pos.x * rect_width;
-	int screen_y = pos.y * rect_height;
-	SDL_Rect rect = { screen_x, screen_y, rect_width, rect_height };
+	SDL_SetRenderTarget(renderer_.get(), gridTexture_.get());
+	const SDL_Rect rect = { static_cast<int>(pos.x), static_cast<int>(pos.y), 1, 1 }; // TODO: static_cast ugly
 	SDL_RenderFillRect(renderer_.get(), &rect);
+	SDL_SetRenderTarget(renderer_.get(), nullptr);
 }
 
 std::string TurmiteSimulatorView::promptFileName() const {

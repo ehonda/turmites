@@ -44,6 +44,7 @@ private:
 	std::shared_ptr<SDL_Renderer> renderer_;
 	CellStateToColorMap colorMap_;
 	std::shared_ptr<TurmiteSimulator> simulator_;
+	std::shared_ptr<SDL_Texture> gridTexture_;	// TODO: Should this be unique_ptr?
 	boost::signals2::connection gridConnection_;
 };
 

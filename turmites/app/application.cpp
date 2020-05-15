@@ -78,21 +78,19 @@ void Application::initializeController() {
 void Application::handleEvents() {
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
-		/*if (e.type == SDL_QUIT)
-			running_ = false;
-		else
-			controller_.handleEvent(e);*/
 		switch (e.type) {
-		case SDL_QUIT:
-			running_ = false;
-			break;
+			case SDL_QUIT:
+				running_ = false;
+				break;
 
-		case SDL_KEYDOWN:
-			controller_.handleEvent(e);
-			speedController_.handleEvent(e);
-			if (e.key.keysym.sym == SDLK_f)
-				handleFPSRequest();
-			break;
+			case SDL_KEYDOWN:
+				controller_.handleEvent(e);
+				speedController_.handleEvent(e);
+				if (e.key.keysym.sym == SDLK_f)
+					handleFPSRequest();
+				if (e.key.keysym.sym == SDLK_ESCAPE)
+					running_ = false;
+				break;
 		}
 	}
 }
@@ -101,9 +99,9 @@ void Application::update() {
 	controller_.update();
 }
 
-void Application::render() {
-	SDL_RenderPresent(renderer_.get());
-}
+//void Application::render() {
+//	SDL_RenderPresent(renderer_.get());
+//}
 
 void Application::cleanup() {
 	window_.reset();

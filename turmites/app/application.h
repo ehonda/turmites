@@ -24,7 +24,7 @@ private:
 
 	void handleEvents();
 	void update();
-	void render();
+	//void render();
 	void cleanup();
 
 	void handleFPSRequest();
