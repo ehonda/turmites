@@ -22,3 +22,5 @@
     - handle getting sizes in a uniform way
 
 - unify input handling, hotkeys
+
+- make on the fly mutation possible (without restarting the whole sim)

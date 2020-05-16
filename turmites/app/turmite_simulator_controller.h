@@ -33,8 +33,11 @@ private:
 
 	void handleLoadRequest();
 	void handleSaveRequest() const;
+	void handleRestartRequest();
 	void handleRandomTurmiteRequest();
+	void handleRandomRoundTripRequest();
 	void handleNewTurmiteRequest();
+	void handleMutationRequest();
 	void handleInfoRequest();
 
 	std::shared_ptr<SDL_Window> window_;

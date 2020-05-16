@@ -70,9 +70,12 @@ bool operator!=(const StateTransitionTable& lhs,
 
 StateTransitionTable getLangtonsAntTransitionTable();
 StateTransitionTable getRandomClassicalTransitionTable(std::size_t cellStates);
+StateTransitionTable getRandomClassicalRoundTrip(std::size_t cellStates);
 StateTransitionTable getRandomTransitionTable(
 	StateTransitionTable::State numberOfInternalStates,
 	grid::CellState numberOfCellStates);
+StateTransitionTable mutateTable(const StateTransitionTable& table);
+
 
 // TODO
 // - FAILURE SAFETY (NON EXISTANT PATH ETC)

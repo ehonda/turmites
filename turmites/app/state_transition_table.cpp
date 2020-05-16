@@ -1,6 +1,8 @@
 #include "state_transition_table.h"
 
+#include <algorithm>
 #include <chrono>
+#include <numeric>
 #include <random>
 
 #include "cereal/archives/xml.hpp"
@@ -128,6 +130,17 @@ StateTransitionTable getRandomClassicalTransitionTable(std::size_t cellStates) {
 	return table;
 }
 
+StateTransitionTable getRandomClassicalRoundTrip(std::size_t cellStates) {
+	StateTransitionTable table(1, cellStates);
+	const auto maxState = static_cast<grid::CellState>(cellStates);
+	for (grid::CellState i = 0; i < maxState; ++i)
+		table.setTableCell(0, i, { 
+			(i + 1) % maxState, 
+			getRandomTurn(), 
+			0 });
+	return table;
+}
+
 StateTransitionTable getRandomTransitionTable(
 	StateTransitionTable::State numberOfInternalStates, 
 	grid::CellState numberOfCellStates)
@@ -151,6 +164,54 @@ StateTransitionTable getRandomTransitionTable(
 			table.setTableCell(i, j, { cellDist(gen), getRandomTurn(), stateDist(gen) });
 
 	return table;
+}
+
+StateTransitionTable mutateTable(const StateTransitionTable& table) {
+	const auto seed = static_cast<unsigned>(
+		std::chrono::system_clock::now().time_since_epoch().count());
+	std::mt19937 gen(seed);
+
+	auto mutated = table;
+
+	// Pick random table cell to mutate
+	const auto rows = table.getNumberOfInternalStates();
+	const auto cols = table.getNumberOfCellStates();
+	std::uniform_int_distribution rowDist(0u, rows - 1);
+	std::uniform_int_distribution colDist(0, cols - 1);
+	const auto i = rowDist(gen);
+	const auto j = colDist(gen);
+
+	// Mutate table cell
+	const auto internalStates = rows;
+	const auto cellStates = cols;
+	// Mutate cellStateToWrite (0) / turn (1) / nextState (2)
+	std::uniform_int_distribution entryMutationDist(0, 2);
+	auto mutatedCell = mutated.getTableCell(i, j);
+	switch (entryMutationDist(gen))
+	{
+		case 0:
+			{
+				std::uniform_int_distribution cellStateDist(0, cellStates - 1);
+				mutatedCell.cellStateToWrite = cellStateDist(gen);
+				break;
+			}
+			
+
+		case 1:
+			mutatedCell.turn = getRandomTurn();
+			break;
+
+		case 2:
+			{
+				std::uniform_int_distribution internalStateDist(0u, internalStates - 1);
+				mutatedCell.nextState = internalStateDist(gen);
+				break;
+			}
+			
+	}
+	mutated.setTableCell(i, j, mutatedCell);
+
+	return mutated;
 }
 
 void saveTransitionTable(const StateTransitionTable& table, std::ostream& os) {

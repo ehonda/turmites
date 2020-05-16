@@ -48,7 +48,7 @@ public:
 
 private:
 	CellUpdateHandler cellUpdateSignal_;
-	std::size_t size_;
+	std::size_t size_ = 0;
 	std::vector<std::vector<CellState>> grid_;
 };
 

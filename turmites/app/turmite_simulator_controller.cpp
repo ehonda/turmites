@@ -23,12 +23,24 @@ void TurmiteSimulatorController::handleEvent(const SDL_Event& e) {
 			handleSaveRequest();
 			break;
 
+		case SDLK_SPACE:
+			handleRestartRequest();
+			break;
+
 		case SDLK_r:
 			handleRandomTurmiteRequest();
 			break;
 
+		case SDLK_t:
+			handleRandomRoundTripRequest();
+			break;
+
 		case SDLK_n:
 			handleNewTurmiteRequest();
+			break;
+
+		case SDLK_m:
+			handleMutationRequest();
 			break;
 
 		case SDLK_i:
@@ -160,6 +172,24 @@ void TurmiteSimulatorController::handleSaveRequest() const {
 	saveTurmite(FILENAME);
 }
 
+void TurmiteSimulatorController::handleRestartRequest() {
+	if (!simulator_)
+		throw std::runtime_error("No simulator.");
+
+	const auto& turmites = simulator_->getTurmites();
+	if (turmites.empty())
+		throw std::runtime_error("No turmite on grid.");
+
+	const auto stateTable = turmites[0].getStateTransitionTable();
+
+	// Make new simulator
+	TurmiteSimulator newSimulator;
+	newSimulator.setGridSize(simulator_->getGrid().size());
+	newSimulator.addTurmite(stateTable);
+	newSimulator.centerTurmites();
+	setSimulator(newSimulator);
+}
+
 void TurmiteSimulatorController::handleRandomTurmiteRequest() {
 	if (!simulator_)
 		throw std::runtime_error("No simulator.");
@@ -174,6 +204,29 @@ void TurmiteSimulatorController::handleRandomTurmiteRequest() {
 	const auto cellStates = stateTable.getNumberOfCellStates();
 	const auto newStateTable = turmite::getRandomTransitionTable(
 		internalStates, cellStates);
+
+	// Make new simulator
+	TurmiteSimulator newSimulator;
+	newSimulator.setGridSize(simulator_->getGrid().size());
+	newSimulator.addTurmite(newStateTable);
+	newSimulator.centerTurmites();
+	setSimulator(newSimulator);
+}
+
+void TurmiteSimulatorController::handleRandomRoundTripRequest() {
+	if (!simulator_)
+		throw std::runtime_error("No simulator.");
+
+	const auto& turmites = simulator_->getTurmites();
+	if (turmites.empty())
+		throw std::runtime_error("No turmite on grid.");
+
+	// Get random transition table with same properties
+	const auto stateTable = turmites[0].getStateTransitionTable();
+	const auto internalStates = stateTable.getNumberOfInternalStates();
+	const auto cellStates = stateTable.getNumberOfCellStates();
+	const auto newStateTable = turmite::getRandomClassicalRoundTrip(
+		cellStates);
 
 	// Make new simulator
 	TurmiteSimulator newSimulator;
@@ -201,6 +254,25 @@ void TurmiteSimulatorController::handleNewTurmiteRequest() {
 	TurmiteSimulator newSimulator;
 	newSimulator.setGridSize(gridSize);
 	newSimulator.addTurmite(turmite::getRandomTransitionTable(internalStates, cellStates));
+	newSimulator.centerTurmites();
+	setSimulator(newSimulator);
+}
+
+void TurmiteSimulatorController::handleMutationRequest() {
+	if (!simulator_)
+		throw std::runtime_error("No simulator.");
+
+	const auto& turmites = simulator_->getTurmites();
+	if (turmites.empty())
+		throw std::runtime_error("No turmite on grid.");
+
+	const auto stateTable = turmites[0].getStateTransitionTable();
+	const auto newStateTable = turmite::mutateTable(stateTable);
+
+	// Make new simulator
+	TurmiteSimulator newSimulator;
+	newSimulator.setGridSize(simulator_->getGrid().size());
+	newSimulator.addTurmite(newStateTable);
 	newSimulator.centerTurmites();
 	setSimulator(newSimulator);
 }
